@@ -1,0 +1,26 @@
+version="0.5.4" #${version:-"0.5.4"}
+echo "Building $version"
+
+sudo chown `whoami`:`whoami` -R src
+cd src/
+git fetch mainline
+git fetch --tags mainline
+git checkout master
+if [[ `git branch --list $version ` ]]
+then
+  git branch -D $version
+fi
+git checkout -b $version master
+# $version
+cd ..
+
+sudo rm -rf build
+sudo mkdir build && sudo chown `whoami`:`whoami` build
+cd build
+
+cmake -DCMAKE_SYSTEM_PREFIX_PATH=$PNG_ROOT \
+      -DCMAKE_INSTALL_PREFIX=/opt/gcc/4.6.4-software/pngwriter/$version ../src
+make -j
+sudo make install
+
+cd ..

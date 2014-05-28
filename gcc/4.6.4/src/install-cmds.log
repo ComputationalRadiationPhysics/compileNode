@@ -1,0 +1,16 @@
+# see https://gcc.gnu.org/wiki/InstallingGCC
+
+mkdir build
+cd src/gcc-4.6.4/
+./contrib/download_prerequisites
+
+cd ../../build
+
+gccDir=/opt/gcc/4.6.4
+../src/gcc-4.6.4/configure --prefix=$gccDir \
+    --build=x86_64-linux-gnu --enable-languages=c,c++,fortran \
+    --enable-shared --disable-multilib
+
+make -j
+make install
+

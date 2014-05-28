@@ -1,0 +1,23 @@
+# module load gcc/4.6.4
+#
+version=3.4.1
+prefix=/opt/gcc/4.6.4-software/python/$version
+
+# build dir
+sudo rm -rf $version-build
+sudo mkdir $version-build
+sudo chown `whoami`:`whoami` -R $version-build
+cd $version-build
+
+../$version-src/configure --prefix=$prefix \
+                          --build=x86_64-linux-gnu \
+                          --srcdir=../$version-src \
+                          --enable-shared
+
+make -j 16
+
+# sudo make test
+
+sudo make install
+
+cd ..

@@ -1,0 +1,13 @@
+# see http://www.cmake.org/cmake/help/install.html
+# compiled with modules gcc/4.6.4
+#
+
+version=2.8.12.2
+
+sudo tar -xvf cmake-$version.tar.gz
+sudo chown `whoami`:`whoami` -R cmake-$version
+cd cmake-$version
+
+./bootstrap --prefix=/opt/cmake/$version
+make
+sudo make install

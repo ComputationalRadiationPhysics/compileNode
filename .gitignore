@@ -1,0 +1,6 @@
+# ignore source/build dirs
+*-src
+*build
+
+# ignore archives
+*.tar*

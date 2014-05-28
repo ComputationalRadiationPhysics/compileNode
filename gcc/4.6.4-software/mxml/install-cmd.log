@@ -1,0 +1,18 @@
+# see
+version=2.8
+prefix=/opt/gcc/4.6.4-software/mxml/$version
+
+sudo tar -xvf mxml-$version.tar.gz
+sudo rm -rf $version-src
+sudo mv mxml-$version $version-src
+sudo chown `whoami`:`whoami` -R $version-src
+
+cd $version-src
+
+./configure --prefix=$prefix \
+            --enable-shared
+
+make
+sudo make install
+
+cd ..

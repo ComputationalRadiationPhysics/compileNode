@@ -1,0 +1,14 @@
+sudo chown `whoami`:`whoami` cuda_6.0.37_linux_64.run
+./cuda_6.0.37_linux_64.run -toolkitpath=/opt/gcc/4.6.4-software/cuda/6.0
+
+# only install toolkit!
+# install with sudo? yes
+#
+# Do you accept the previously read EULA? (accept/decline/quit): accept
+# Install NVIDIA Accelerated Graphics Driver for Linux-x86_64 331.62? ((y)es/(n)o/(q)uit): n
+# Install the CUDA 6.0 Toolkit? ((y)es/(n)o/(q)uit): y
+# Enter Toolkit Location [ default is /opt/gcc/4.6.4-software/cuda/6.0 ]: 
+#   /opt/gcc/4.6.4-software/cuda/6.0 is not writable.
+# Do you wish to run the installation with 'sudo'? ((y)es/(n)o): y
+# Do you want to install a symbolic link at /usr/local/cuda? ((y)es/(n)o/(q)uit): n
+# Install the CUDA 6.0 Samples? ((y)es/(n)o/(q)uit): n

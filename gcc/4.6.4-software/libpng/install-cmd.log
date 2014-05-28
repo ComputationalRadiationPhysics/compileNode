@@ -1,0 +1,17 @@
+# see
+version=1.2.51
+prefix=/opt/gcc/4.6.4-software/libpng/$version
+
+sudo tar -xJf libpng-$version.tar.xz
+sudo rm -rf $version-src
+sudo mv libpng-$version $version-src
+sudo chown `whoami`:`whoami` -R $version-src
+
+cd $version-src
+
+./configure --prefix=$prefix
+
+make
+sudo make install
+
+cd ..

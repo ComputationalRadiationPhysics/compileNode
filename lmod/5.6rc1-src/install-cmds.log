@@ -1,0 +1,8 @@
+# see https://www.tacc.utexas.edu/tacc-projects/lmod/system-administrator-guide/installing-lmod
+
+./configure --prefix=/opt
+make
+make install
+
+ln -s /opt/lmod/lmod/init/profile /etc/profile.d/modules.sh
+ln -s /opt/lmod/lmod/init/cshrc /etc/profile.d/modules.csh

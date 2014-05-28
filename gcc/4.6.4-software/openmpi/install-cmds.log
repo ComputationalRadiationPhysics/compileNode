@@ -1,0 +1,13 @@
+# module load gcc/4.6.4
+#
+version=1.6.5
+sudo chown `whoami`:`whoami` -R .
+./configure --prefix=/opt/gcc/4.6.4-software/openmpi/$version \
+            CC="`which gcc`" CXX="`which g++`" F77="`which gfortran`" FC="`which gfortran`" \
+            --enable-shared --enable-static
+# Open MPI 1.7.3+:
+#           --with-cuda=/opt/.../cuda
+
+make -j all
+
+sudo make install
