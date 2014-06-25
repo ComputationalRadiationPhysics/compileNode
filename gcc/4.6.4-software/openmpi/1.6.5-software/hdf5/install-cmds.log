@@ -1,0 +1,18 @@
+# load modules compiler + mpi:
+# module load gcc
+# module load openmpi
+# run me with . ./install-cmds.log
+#
+version=1.8.13
+which gcc
+
+sudo tar -xvf hdf5-$version.tar.gz
+sudo mv hdf5-$version $version-src
+
+sudo chown `whoami`:`whoami` -R $version-src/
+cd $version-src
+
+./configure --enable-parallel --enable-shared \
+            --prefix=/opt/gcc/4.6.4-software/openmpi/1.6.5-software/hdf5/$version
+make
+sudo make install

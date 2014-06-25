@@ -1,0 +1,22 @@
+version=${version:-"1.2.0"}
+echo "Building $version"
+
+cd src/
+git fetch mainline
+git fetch --tags mainline
+git checkout master
+if [[ `git branch --list $version ` ]]
+then
+  git branch -D $version
+fi
+git checkout -b $version v$version
+cd ..
+
+sudo rm -rf build/*
+cd build
+
+cmake -DCMAKE_INSTALL_PREFIX=/opt/gcc/4.6.4-software/openmpi/1.6.5-software/libSplash/$version ../src
+make -j
+sudo make install
+
+cd ..

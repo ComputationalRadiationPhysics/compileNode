@@ -1,0 +1,26 @@
+# load modules compiler + mpi:
+# module load gcc
+# module load openmpi mxml
+# run me with . ./install-cmds.log
+#
+version=1.7.0
+prefix=/opt/gcc/4.6.4-software/openmpi/1.6.5-software/adios/$version
+
+sudo tar -xvf adios-$version.tar.gz
+sudo rm -rf $version-src
+sudo mv adios-$version $version-src
+
+sudo chown `whoami`:`whoami` -R $version-src/
+cd $version-src
+
+./configure --with-mxml=$MXML_ROOT --prefix=$prefix
+
+# needs high level apis of HDF5:
+#    --with-phdf5=$HDF5_ROOT --with-hdf5=$HDF5_ROOT
+
+make
+
+sudo rm -rf $prefix
+sudo make install
+
+cd ..
