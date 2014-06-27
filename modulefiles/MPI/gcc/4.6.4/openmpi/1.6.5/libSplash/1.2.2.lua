@@ -6,7 +6,7 @@ The parallel mode is enabled.
 
 whatis("Description: libSplash: Simple Parallel file output Library for Accumulating Simulation data using Hdf5")
 
-local version = "1.2.0"
+local version = "1.2.2"
 local base = pathJoin("/opt/gcc/4.6.4-software/openmpi/1.6.5-software/libSplash",version)
 
 -- prereq("hdf5/1.8.13")
