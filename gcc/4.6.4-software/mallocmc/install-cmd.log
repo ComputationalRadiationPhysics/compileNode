@@ -1,0 +1,27 @@
+# compiled with module load gcc/4.6.4 boost/1.55.0 cmake/2.8.12.2 cuda/6.0
+#
+version="2.0.1" #${version:-"2.0.1"}
+echo "Building $version"
+
+sudo chown `whoami`:`whoami` -R src
+cd src/
+git fetch mainline
+git fetch --tags mainline
+git checkout master
+if [[ `git branch --list $version ` ]]
+then
+  git branch -D $version
+fi
+git checkout -b $version master
+# $version
+cd ..
+
+sudo rm -rf build
+sudo mkdir build && sudo chown `whoami`:`whoami` build
+cd build
+
+cmake -DCMAKE_INSTALL_PREFIX=/opt/gcc/4.6.4-software/mallocmc/$version ../src
+make -j
+sudo make install
+
+cd ..
