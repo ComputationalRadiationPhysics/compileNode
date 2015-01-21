@@ -1,0 +1,27 @@
+# compiled with module load gcc/4.6.4 cmake/2.8.12.2
+#   sudo apt-get install uuid-dev
+#
+version=${version:-"1.0.0"}
+echo "Building $version"
+
+sudo chown `whoami`:`whoami` -R src
+cd src/
+git fetch mainline
+git fetch --tags mainline
+git checkout master
+git pull --ff-only mainline master
+if [[ `git branch --list v$version ` ]]
+then
+  git branch -D v$version
+fi
+git checkout -b v$version master
+# v$version
+
+cd libs
+./build.sh /opt/gcc/4.6.4-software/rivlib/$version
+make
+
+cd rivlib/release
+sudo make install
+
+cd /opt/gcc/4.6.4-software/rivlib
