@@ -1,12 +1,12 @@
 # see
 #  http://www.boost.org/doc/libs/1_55_0/more/getting_started/unix-variants.html#header-only-libraries
 #  https://gist.github.com/ax3l/7450482
-version=1.55.0
+version=1.57.0
 prefix=/opt/gcc/4.6.4-software/boost/$version
 
-sudo tar -xvf boost_1_55_0.tar.gz
+sudo tar -xvf boost_1_57_0.tar.gz
 sudo rm -rf $version-src
-sudo mv boost_1_55_0 $version-src
+sudo mv boost_1_57_0 $version-src
 sudo chown `whoami`:`whoami` -R $version-src
 
 cd $version-src

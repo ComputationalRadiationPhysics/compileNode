@@ -6,7 +6,7 @@ This is a header only library, depending on boost and cuda.
 
 whatis("Description: mallocMC: Memory Allocator for Many Core Architectures")
 
-local version = "2.0.1"
+local version = "2.0.1crp"
 local base = pathJoin("/opt/gcc/4.6.4-software/mallocmc",version)
 
 -- load CUDA, Boost
