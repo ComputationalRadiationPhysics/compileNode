@@ -1,5 +1,5 @@
 # module load cmake gcc openmpi hdf5
-version=${version:-"1.2.3"}
+version=${version:-"1.2.4"}
 echo "Building $version"
 
 cd src/
