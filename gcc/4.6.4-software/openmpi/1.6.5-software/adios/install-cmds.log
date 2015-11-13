@@ -3,7 +3,7 @@
 # module load openmpi mxml
 # run me with . ./install-cmds.log
 #
-version=1.7.0
+version=1.9.0
 prefix=/opt/gcc/4.6.4-software/openmpi/1.6.5-software/adios/$version
 
 sudo tar -xvf adios-$version.tar.gz

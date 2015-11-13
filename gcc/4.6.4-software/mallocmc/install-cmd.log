@@ -1,6 +1,6 @@
 # compiled with module load gcc/4.6.4 boost/1.55.0 cmake/2.8.12.2 cuda/6.0
 #
-version=${version:-"2.0.1crp"}
+version=${version:-"2.1.0crp"}
 echo "Building $version"
 
 sudo chown `whoami`:`whoami` -R src
