@@ -1,0 +1,19 @@
+# module load gcc
+version=2.9
+prefix=/opt/gcc/$(gcc -dumpversion)-software/mxml/$version
+
+sudo wget http://www.msweet.org/files/project3/mxml-$version.tar.gz
+sudo tar -xzf mxml-$version.tar.gz
+sudo rm -rf $version-src
+sudo mv mxml-$version $version-src
+sudo chown `whoami`:`whoami` -R $version-src
+
+cd $version-src
+
+./configure --prefix=$prefix \
+            --enable-shared
+
+make
+sudo make install
+
+cd ..

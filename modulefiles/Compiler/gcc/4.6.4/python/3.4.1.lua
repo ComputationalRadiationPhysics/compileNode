@@ -17,7 +17,7 @@ setenv("PYTHONHOME", base)
 
 -- for modules set PYTHONPATH
 
-prepend_path("MANPATH", pathJoin(base, "sahre/man"))
+prepend_path("MANPATH", pathJoin(base, "share/man"))
 prepend_path("PATH", pathJoin(base, "bin"))
 -- prepend_path("C_INCLUDE_PATH", pathJoin(base, "include"))
 -- prepend_path("CPLUS_INCLUDE_PATH", pathJoin(base, "include"))

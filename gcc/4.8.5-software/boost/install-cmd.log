@@ -1,0 +1,28 @@
+# see
+#  http://www.boost.org/doc/libs/1_59_0/more/getting_started/unix-variants.html#header-only-libraries
+#  https://gist.github.com/ax3l/7450482
+#
+# module load gcc
+version=1.59.0
+prefix=/opt/gcc/4.8.5-software/boost/$version
+
+sudo wget http://skylink.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.gz
+sudo tar -xf boost_1_59_0.tar.gz
+sudo rm -rf $version-src
+sudo mv boost_1_59_0 $version-src
+sudo chown `whoami`:`whoami` -R $version-src
+
+cd $version-src
+
+./bootstrap.sh --prefix=$prefix \
+               --with-libraries=date_time,exception,filesystem,math,program_options,random,regex,serialization,signals,system,thread
+
+sudo rm -rf $prefix
+sudo mkdir $prefix
+sudo chown `whoami`:`whoami` $prefix
+
+./b2 -j 16 install
+
+sudo chown -R root:root $prefix
+
+cd ..

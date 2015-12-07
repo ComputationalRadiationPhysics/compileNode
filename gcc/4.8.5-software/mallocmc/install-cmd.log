@@ -1,0 +1,32 @@
+# compiled with module load gcc/4.8.5 cuda/7.5.18 boost/1.59.0 cmake/2.8.12.2
+#
+version=${version:-"2.2.0crp"}
+echo "Building $version"
+
+sudo rm -rf src
+sudo git clone https://github.com/ComputationalRadiationPhysics/mallocMC.git src
+
+cd src/
+sudo git fetch --tags origin
+sudo git checkout master
+sudo git pull --ff-only origin master
+if [[ `sudo git branch --list $version ` ]]
+then
+  sudo git branch -D $version
+fi
+sudo git checkout -b $version master
+# $version
+cd ..
+
+
+
+sudo rm -rf build
+sudo mkdir build && sudo chown `whoami`:`whoami` build
+cd build
+
+cmake -DCMAKE_INSTALL_PREFIX=/opt/gcc/$(gcc -dumpversion)-software/mallocmc/$version \
+      ../src
+make -j
+sudo make install
+
+cd ..

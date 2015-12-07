@@ -1,0 +1,35 @@
+# load modules compiler + mpi:
+# module load gcc/4.8.5 cuda/7.5.18
+# module load openmpi/1.10.1
+# run me with ./install-cmds.log
+#
+version=1.8.16
+prefix=/opt/gcc/$(gcc -dumpversion)-software/openmpi/1.10.1-software/hdf5/$version
+
+#sudo wget https://www.hdfgroup.org/ftp/HDF5/releases/hdf5-$version/src/hdf5-$version.tar.gz
+#sudo tar -xzf hdf5-$version.tar.gz
+#sudo mv hdf5-$version $version-src
+
+sudo rm -rf build
+sudo mkdir build
+sudo chown `whoami`:`whoami` build
+
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=$prefix \
+      -DHDF5_ENABLE_PARALLEL=ON \
+      -DHDF5_BUILD_CPP_LIB=OFF \
+      ../$version-src/
+
+#sudo chown -R `whoami`:`whoami` -R $version-src/
+#cd $version-src
+
+#./configure --enable-parallel --enable-shared \
+#            --prefix=$prefix
+
+#exit
+
+make -j
+make
+sudo make install
+
+cd ..

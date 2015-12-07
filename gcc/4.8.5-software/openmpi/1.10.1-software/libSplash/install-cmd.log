@@ -1,0 +1,28 @@
+# module load cmake gcc openmpi hdf5
+version=${version:-"1.3.0"}
+echo "Building $version"
+
+sudo rm -rf src build
+sudo mkdir -p build
+sudo git clone https://github.com/ComputationalRadiationPhysics/libSplash.git src
+sudo chown -R `whoami`:`whoami` src build
+
+cd src/
+git fetch origin
+git fetch --tags origin
+git checkout master
+if [[ `git branch --list $version ` ]]
+then
+  git branch -D $version
+fi
+git checkout -b $version v$version
+cd ..
+
+cd build
+
+cmake -DCMAKE_INSTALL_PREFIX=/opt/gcc/$(gcc -dumpversion)-software/openmpi/1.10.1-software/libSplash/$version \
+      ../src
+make -j
+sudo make install
+
+cd ..

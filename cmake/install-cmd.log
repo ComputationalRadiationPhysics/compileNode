@@ -1,8 +1,9 @@
 # see http://www.cmake.org/cmake/help/install.html
-# compiled with modules gcc/4.6.4
+# compiled with modules gcc/4.6.4 (2.8.12.2)
+# and                   gcc/4.8.5 (3.4.1)
 #
 
-version=2.8.12.2
+version=3.4.1
 
 sudo tar -xvf cmake-$version.tar.gz
 sudo chown `whoami`:`whoami` -R cmake-$version

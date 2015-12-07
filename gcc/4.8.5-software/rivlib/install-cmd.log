@@ -1,0 +1,29 @@
+# compiled with module load gcc/4.8.5 cmake/2.8.12.2
+#   sudo apt-get install uuid-dev
+#
+version=${version:-"1.0.1"}
+echo "Building $version"
+
+sudo rm -rf src
+sudo git clone https://github.com/ComputationalRadiationPhysics/rivlib.git src
+sudo chown -R `whoami`:`whoami` src
+cd src/
+git fetch origin
+git fetch --tags origin
+git checkout master
+git pull --ff-only origin master
+if [[ `git branch --list v$version ` ]]
+then
+  git branch -D v$version
+fi
+git checkout -b v$version master
+# v$version
+
+cd libs
+./build.sh /opt/gcc/$(gcc -dumpversion)-software/rivlib/$version
+make
+
+cd rivlib/release
+sudo make install
+
+cd ../../../

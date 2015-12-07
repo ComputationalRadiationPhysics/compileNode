@@ -1,14 +1,14 @@
 help(
 [[
-This module loads Python.
+This module loads Python 3.
 ]])
 
 whatis("Description: Python: The Powerful Programming Language")
 
 -- family ("python")
 
-local version = "2.7.6"
-local base = pathJoin("/opt/gcc/4.6.4-software/python",version)
+local version = "3.5.0"
+local base = pathJoin("/opt/gcc/4.8.5-software/python",version)
 
 -- for CMake
 setenv("PYTHON_ROOT", base)

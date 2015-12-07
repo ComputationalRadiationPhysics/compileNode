@@ -1,0 +1,21 @@
+# module load gcc/4.8.5 cuda
+#
+version=1.10.1
+
+echo "extract ..."
+sudo tar -xzf openmpi-$version.tar.gz
+sudo chown `whoami`:`whoami` -R openmpi-$version
+
+echo "build ..."
+cd openmpi-$version
+./configure --prefix=/opt/gcc/4.8.5-software/openmpi/$version \
+            CC="`which gcc`" CXX="`which g++`" F77="`which gfortran`" FC="`which gfortran`" \
+            --enable-shared --enable-static
+            # --with-cuda=$CUDA_ROOT
+            # --enable-mpi-thread-multiple --with-threads
+# CUDA aware MPI since Open MPI 1.7.3+
+
+make -j all
+sudo make install
+
+cd ..
