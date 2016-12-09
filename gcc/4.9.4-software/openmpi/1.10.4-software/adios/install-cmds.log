@@ -1,0 +1,32 @@
+# load modules compiler + mpi:
+# module load gcc
+# module load openmpi
+# run me with ./install-cmds.log
+#
+version=1.10.0
+prefix=/opt/gcc/$(gcc -dumpversion)-software/openmpi/1.10.4-software/adios/$version
+
+sudo wget http://users.nccs.gov/~pnorbert/adios-$version.tar.gz
+sudo tar -xzf adios-$version.tar.gz
+sudo rm -rf $version-src
+sudo mv adios-$version $version-src
+
+sudo chown `whoami`:`whoami` -R $version-src/
+cd $version-src
+
+# --with-mxml=$MXML_ROOT \
+./configure CFLAGS="-fPIC -g -O2" \
+            --with-zlib --with-mpi=$MPI_ROOT \
+            --enable-static --enable-shared \
+            --prefix=$prefix
+
+# needs high level apis of HDF5:
+#    --with-phdf5=$HDF5_ROOT --with-hdf5=$HDF5_ROOT
+
+make -j
+make
+
+sudo rm -rf $prefix
+sudo make install
+
+cd ..

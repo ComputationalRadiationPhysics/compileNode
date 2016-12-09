@@ -1,0 +1,19 @@
+# see
+version=1.6.26
+prefix=/opt/gcc/4.9.4-software/libpng/$version
+
+sudo wget -O libpng-$version.tar.gz http://prdownloads.sourceforge.net/libpng/libpng-$version.tar.gz?download
+
+sudo tar -xzf libpng-$version.tar.gz
+sudo rm -rf $version-src
+sudo mv libpng-$version $version-src
+sudo chown `whoami`:`whoami` -R $version-src
+
+cd $version-src
+
+./configure --prefix=$prefix
+
+make
+sudo make install
+
+cd ..

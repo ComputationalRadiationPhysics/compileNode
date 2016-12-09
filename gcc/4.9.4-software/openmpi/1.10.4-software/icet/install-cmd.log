@@ -1,0 +1,29 @@
+# module load cmake gcc cuda openmpi
+version="2.1.1"
+echo "Building $version"
+
+sudo rm -rf src build
+sudo mkdir -p build
+sudo git clone git://public.kitware.com/IceT.git src
+sudo chown -R `whoami`:`whoami` src build
+
+cd src/
+git fetch origin
+git fetch --tags origin
+git checkout master
+if [[ `git branch --list $version ` ]]
+then
+  git branch -D $version
+fi
+git checkout -b $version IceT-$version
+cd ..
+
+cd build
+
+cmake -DCMAKE_INSTALL_PREFIX=/opt/gcc/$(gcc -dumpversion)-software/openmpi/1.10.4-software/icet/$version \
+      -DICET_USE_OPENGL:BOOL=OFF \
+      ../src
+make -j
+sudo make install
+
+cd ..

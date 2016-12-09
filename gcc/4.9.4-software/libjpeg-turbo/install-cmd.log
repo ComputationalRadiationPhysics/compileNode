@@ -1,0 +1,18 @@
+# module load gcc/4.9.4
+#
+version="1.5.1"
+echo "Building $version"
+
+sudo wget http://downloads.sourceforge.net/project/libjpeg-turbo/1.5.1/libjpeg-turbo-$version.tar.gz
+sudo tar -xzf libjpeg-turbo-$version.tar.gz
+
+sudo rm -rf build
+sudo mkdir build && sudo chown `whoami`:`whoami` build
+cd build
+
+sh ../libjpeg-turbo-$version/configure \
+   --prefix=/opt/gcc/4.9.4-software/libjpeg-turbo/$version
+make -j
+sudo make install
+
+cd ..

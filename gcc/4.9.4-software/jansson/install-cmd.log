@@ -1,0 +1,19 @@
+# module load gcc/4.9.4 cmake
+#
+version="2.9"
+echo "Building $version"
+
+sudo wget https://github.com/akheron/jansson/archive/v$version.tar.gz
+sudo mv v$version.tar.gz $version.tar.gz
+sudo tar -xzf $version.tar.gz
+
+sudo rm -rf build
+sudo mkdir build && sudo chown `whoami`:`whoami` build
+cd build
+
+cmake -DCMAKE_INSTALL_PREFIX=/opt/gcc/$(gcc -dumpversion)-software/jansson/$version \
+      ../jansson-$version
+make -j
+sudo make install
+
+cd ..

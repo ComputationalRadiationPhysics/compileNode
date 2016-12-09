@@ -1,0 +1,30 @@
+# see https://gcc.gnu.org/wiki/InstallingGCC
+#
+# load a compiler first, e.g., an other version of gcc via
+#   module load gcc
+
+sudo rm -rf build src
+sudo mkdir -p build src
+sudo chown `whoami`:`whoami` build src
+
+cd src
+wget ftp://ftp.fu-berlin.de/unix/languages/gcc/releases/gcc-4.9.4/gcc-4.9.4.tar.gz
+
+echo "extract..."
+tar -xzf gcc-4.9.4.tar.gz
+cd gcc-4.9.4
+
+echo "download prerequisites..."
+./contrib/download_prerequisites
+
+cd ../../build
+
+gccDir=/opt/gcc/4.9.4
+../src/gcc-4.9.4/configure CFLAGS="-fPIC" CXXFLAGS="-fPIC" \
+    --prefix=$gccDir \
+    --build=x86_64-linux-gnu --enable-languages=c,c++,fortran \
+    --enable-shared --disable-multilib
+
+make -j
+sudo make install
+

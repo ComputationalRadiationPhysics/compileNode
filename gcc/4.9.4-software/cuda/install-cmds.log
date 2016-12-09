@@ -1,0 +1,15 @@
+sudo chown `whoami`:`whoami` cuda_7.5.18_linux.run
+sudo chmod u+x cuda_7.5.18_linux.run
+./cuda_7.5.18_linux.run -toolkitpath=/opt/gcc/4.9.4-software/cuda/7.5.18 --override
+
+# only install toolkit!
+# install with sudo? yes
+#
+# Do you accept the previously read EULA? (accept/decline/quit): accept
+# Install NVIDIA Accelerated Graphics Driver for Linux-x86_64 331.62? ((y)es/(n)o/(q)uit): n
+# Install the CUDA 7.5 Toolkit? ((y)es/(n)o/(q)uit): y
+# Enter Toolkit Location [ default is /opt/gcc/4.6.4-software/cuda/6.0 ]: 
+#   /opt/gcc/4.9.4-software/cuda/7.5 is not writable.
+# Do you wish to run the installation with 'sudo'? ((y)es/(n)o): y
+# Do you want to install a symbolic link at /usr/local/cuda? ((y)es/(n)o/(q)uit): n
+# Install the CUDA 7.5 Samples? ((y)es/(n)o/(q)uit): n
