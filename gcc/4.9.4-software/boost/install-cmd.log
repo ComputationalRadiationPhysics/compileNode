@@ -15,7 +15,7 @@ sudo chown `whoami`:`whoami` -R $version-src
 cd $version-src
 
 ./bootstrap.sh --prefix=$prefix \
-               --with-libraries=date_time,exception,filesystem,math,program_options,random,regex,serialization,signals,system,thread
+               --with-libraries=date_time,exception,filesystem,math,program_options,random,regex,serialization,signals,serialization,system,thread
 
 sudo rm -rf $prefix
 sudo mkdir $prefix
